@@ -1,0 +1,35 @@
+{
+  "name": "addressbook",
+  "version": "0.0.1",
+  "description": "An addressbook for TIY PT Class",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaseadamsio/addressbook.git"
+  },
+  "author": "Chase Adams",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaseadamsio/addressbook/issues"
+  },
+  "homepage": "https://github.com/chaseadamsio/addressbook#readme",
+  "dependencies": {
+    "css-loader": "^0.12.1",
+    "extract-text-webpack-plugin": "^0.8.0",
+    "jsx-loader": "^0.13.2",
+    "node-bourbon": "^4.2.2",
+    "node-libs-browser": "^0.5.0",
+    "node-neat": "^1.7.1-beta1",
+    "node-sass": "^3.3.2",
+    "react": "^0.13.3",
+    "sass-loader": "^2.0.1",
+    "style-loader": "^0.12.3",
+    "webpack": "^1.9.5"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^1.10.1"
+  }
+}
