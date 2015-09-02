@@ -1,2 +1,3 @@
-console.log("hello world!");
 require("../app.scss");
+
+$("#app").append("hello world!");

@@ -26,6 +26,15 @@ module.exports = {
             React: 'react',
             // Router: 'react-router'
         }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jquery: "jQuery",
+            "windows.jQuery": "jquery"
+        }),
+        new webpack.ProvidePlugin({
+            _: "lodash",
+            "windows.lodash": "lodash"
+        }),
         new ExtractTextPlugin("css/[name].css"),
     ],
     module: {
