@@ -4,13 +4,43 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>AddressBook</title>
         <link rel="stylesheet" href="css/app.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
     </head>
     <body>
-        <h1>Address Book</h1>
-        <div id="app"></div>
-        <script src="js/bundle.js"></script>
-        <script type="text/template" id="add-contact-form">
+        <div id="main">
+            <h1>Address Book</h1>
+            <div id="app"></div>
+        </div>
 
+        <script type="text/template" id="contact-template">
+          <tr>
+            <td><%= firstName %> <%= lastName %></td>
+            <td><%= phone %></td>
+            <td><%= likes.join(", ") %></td>
+            <td><% if (single) { %>Single<% } else { %>Married<% } %></td>
+            <td><a href="#" data-idx="<%= idx %>" class="edit">Edit</a></td>
+          </tr>
         </script>
+
+        <script type="text/template" id="contact-form-template">
+            <div id="contact-form">
+              <form>
+                <a href="#" class="close">Close</a>
+                <h1><%= action %> Contact</h1>
+                <input type="text" name="firstName" id="contact-form-first-name" placeholder="First Name" value="<%= data.firstName %>" />
+                <input type="text" name="lastName" id="contact-form-last-name" placeholder="Last Name" value="<%= data.lastName %>" />
+
+                <label for="single-radio">Single</label><input id="single-radio" type="radio" name="single" value="true" />
+                <label for="married-radio">Married</label><input id="married-radio" type="radio" name="single" value="false" />
+
+                <div>
+                    <button><%= action %> Contact</button>
+                </div>
+              </form>
+              <div class="curtain"></div>
+            </div>
+        </script>
+
+        <script src="js/bundle.js"></script>
     </body>
 </html>

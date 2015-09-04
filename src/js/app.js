@@ -1,49 +1,57 @@
 require("../app.scss");
+var contacts = require("./contacts");
+var $app = $("#app");
 
-/**
-  contacts = [
-  {
-    firstName: string
-    lastName: string
-    phone: string
-    photo: string
-    likes: [string, ...]
-    birthday: string
-    single: bool
-  },
-  ...]
-*/
+var generateAddressBook = function () {
+  $app.append("<button id=\"add-contact\">Add Contact</button>");
+  $app.append("<table id=\"address-book\"></table>");
+  $("#address-book").append("<thead><th>Name</th><th>Phone</th><th>Likes</th><th>Marital Status</th><th>Actions</th></thead>");
 
-module.exports.addToLocalStorage = function (contacts) {
-  localStorage.contacts = JSON.stringify(contacts);
+  var contactTmpl = _.template($("#contact-template").html());
+  // getting the element with the id of contact-template
+  // getting the innerhtml of that element
+  // passing the innerhtml to _.template which returns a function
+    // this function takes an object that it interpolates the variables
+    // for the values
+
+  var contactsArray = contacts.getContacts();
+
+  contactsArray.forEach(function (contact, i) {
+    contact.idx = i;
+    $("#address-book").append(contactTmpl(contact));
+  });
 };
 
-module.exports.getContacts = function () {
-  return JSON.parse(localStorage.contacts);
+generateAddressBook();
+
+var contactFormTmpl = _.template($("#contact-form-template").html());
+
+var setupAddFormListener = function () {
+  $app.on("click", "#add-contact", function (e) {
+    e.preventDefault();
+    $app.append(contactFormTmpl({ action: "Add", data: {} }));
+  });
 };
 
-module.exports.getContact = function (idx) {
-  return getContacts()[idx];
+setupAddFormListener();
+
+var setupEditFormListener = function () {
+  $app.on("click", ".edit", function (e) {
+    e.preventDefault();
+    $app.append(contactFormTmpl({
+       action: "Edit",
+       data: contacts.getContact(e.target.dataset.idx)
+     }));
+  });
 };
 
-module.exports.addContact = function (contact) {
-  var contacts = getContacts();
-  contacts.push(contact);
-  addToLocalStorage(contacts);
-  return contact;
+setupEditFormListener();
+
+var setupCloseFormListener = function () {
+  $app.on("click", ".curtain, .close", function(e) {
+    e.preventDefault();
+    $("#contact-form").remove();
+  });
 };
 
-module.exports.editContact = function (idx, contact) { // idx => int, contact => {...}
-  var contacts = getContacts(); // contacts => [{...}...]
-  contacts[idx] = contact;
-  addToLocalStorage(contacts);
-  return contact;
-};
-
-module.exports.removeContact = function (idx) {
-  var contacts = getContacts();
-  var contact = contacts.splice(idx, 1)[0];
-  addToLocalStorage(contacts);
-  return contact;
-};
-
+setupCloseFormListener();

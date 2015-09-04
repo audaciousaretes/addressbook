@@ -1,3 +1,64 @@
-body {
-  background: #ccc;
+* {
+  box-sizing: border-box;
+}
+
+#main {
+  width: 60%;
+  margin: 0 auto;
+
+  button {
+    margin: 1em 0;
+    padding: .5em;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  #address-book {
+    width: 100%;
+
+    thead {
+      text-align: left;
+      background: #ccc;
+    }
+
+    thead th, tr td {
+      padding: 1em 1em;
+    }
+  }
+}
+
+.curtain {
+  background: rgba(0,0,0,.5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+form {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  margin-left: -25%;
+  padding: 1em;
+  height: 50%;
+  width: 50%;
+  background: #fff;
+  z-index: 10;
+
+  input[type="text"] {
+    padding: .5em;
+    font-size: 24px;
+  }
+
+  > div {
+    text-align: center;
+  }
+
+  button {
+    text-align: center;
+  }
 }
